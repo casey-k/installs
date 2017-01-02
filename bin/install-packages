@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+readonly SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "${SCRIPT_DIR}/shell-utils.bash"
+
+set -e
+
+no_root
+
+# OS-specific package installation
+if is_linux; then
+    echo "Installing packages for Ubuntu. See install-packages-ubuntu"
+    ${SCRIPT_DIR}/install-packages-ubuntu || die "Failed to install third party packages"
+elif is_osx; then
+    echo "Installing packages for OS X. See install-packages-osx and install-jdk-osx"
+    ${SCRIPT_DIR}/install-packages-osx || die "Failed to install third party packages"
+else
+    die "Unrecognized OS. Exiting..."
+fi
+
+${SCRIPT_DIR}/install-shims || die "Failed to install shims"
+
+# source all dot files 
+source $HOME/.profile
+
+${SCRIPT_DIR}/install-python-packages || die "Failed to install python packages"
+${SCRIPT_DIR}/install-nvm || die "Failed to install nvm"
+${SCRIPT_DIR}/install-zsh || die "Failed to install ZSH"
+${SCRIPT_DIR}/install-vim-plugins || die "Failed to install vim plugins"
+
+# Also install vimrc
+cp ${SCRIPT_DIR}/../templates/vimrc ${HOME}/.vimrc || die "Failed to install .vimrc"
+

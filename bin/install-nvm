@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Installs the latest version of nvm 
+curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash

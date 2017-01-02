@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# Install script for OS X 
+readonly SCRIPT_DIR="$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)"
+source "${SCRIPT_DIR}/shell-utils.bash"
+
+set -e
+
+no_root
+
+if ! exists "brew"; then
+    echo "Please install brew using 'install-env'"
+    exit 1
+fi
+
+##
+# Adds a shell to the list of the legit shells
+##
+add_shell() {
+    new_shell=$1
+
+    local shell_path="$(brew --prefix ${new_shell})/bin/${new_shell}"
+    [[ -n "$(grep "${shell_path}" /private/etc/shells)" ]] || sudo bash -c "echo "${shell_path}" >> /private/etc/shells"
+
+##
+# Installs bash and adds the new shell to the list of legit shells
+##
+install_bash() {
+    brew install bash
+
+    echo "Install script adding Bash 4.x to /etc/shells ..."
+    add_shell bash
+}
+
+##
+# Installs ZSH and adds the new shell to the list of legit shells
+##
+install_zsh() {
+    brew install zsh
+
+    echo "Install script adding brew's ZSH to /etc/shells ..."
+    add_shell zsh
+}
+
+# Recommended utilities
+# https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+PACKAGE_LIST=(
+    binutils
+    homebrew/dupes/diffutils
+    coreutils
+    curl
+    gawk
+    git
+    homebrew/dupes/gzip
+    jq
+    less
+    maven
+    openssh
+    openssl
+    phantomjs
+    pyenv
+    pyenv-virtualenv
+    rsync
+    ssh-copy-id
+    svn
+    tmux
+    unzip
+    watch
+    wget
+)
+
+DEFAULT_NAME_PACKAGE_LIST=(
+    /homebrew/dupes/ed
+    findutils
+    gnu-indent
+    gnu-sed
+    gnu-tar
+    gnu-which
+    gnutls
+    /homebrew/dupes/grep
+    /homebrew/dupes/gzip
+)
+
+CASK_INSTALLS=(
+    beyond-compare
+    iterm2
+    slack
+)
+
+brew update
+brew upgrade --all
+
+install_bash
+install_zsh
+
+brew install "${PACKAGE_LIST[@]}"
+brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
+brew cask install ${CASK_INSTALLS[@]}
+brew install macvim --override-system-vim --custom-system-icons
+
+# Install default preferences
+${SCRIPT_DIR}/install-osx-preferences
+

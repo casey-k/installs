@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+
+"""
+install-vim-plugins
+
+Clone and own from https://github.com/GitOnUp/environs/blob/master/vimenv.py
+Vim-specific environment helpers.  This module uses git and pathogen to manage
+vim plugins.
+"""
+from collections import namedtuple
+from os import path, makedirs, walk, chdir, getcwd
+from urllib import urlretrieve
+from subprocess import check_call
+
+
+VimPlugin = namedtuple('VimPlugin', ['find_file', 'friendly', 'clone_url'])
+
+plugins = [
+        VimPlugin('NERD_tree.vim', 'NERDTree', 'https://github.com/scrooloose/nerdtree.git'),
+        VimPlugin('unite.vim', 'Unite', 'https://github.com/Shougo/unite.vim.git'),
+        VimPlugin('molokai.vim', 'Molokai', 'https://github.com/tomasr/molokai.git'),
+        VimPlugin('airline.vim', 'Airline', 'https://github.com/bling/vim-airline'),
+        VimPlugin('vimproc.vim', 'vimproc', 'https://github.com/Shougo/vimproc.vim.git'),
+        VimPlugin('vimsnippets.vim', 'Vim Snippets', 'https://github.com/honza/vim-snippets.git'),
+        VimPlugin('02tlib.vim', 'tlib_vim', 'https://github.com/tomtom/tlib_vim.git'),
+        VimPlugin('vim-addon-mw-utils-addon-info.txt', 'Vim addon MW Utils', 'https://github.com/MarcWeber/vim-addon-mw-utils.git'),
+        VimPlugin('snipMate.vim', 'Vim SnipMate', 'https://github.com/garbas/vim-snipmate.git'),
+        VimPlugin('tcomment.vim', 'TComment', 'https://github.com/tomtom/tcomment_vim.git'),
+        VimPlugin('fugitive.vim', 'vim-fugitive', 'https://github.com/tpope/vim-fugitive.git'),
+        VimPlugin('surround.vim', 'Surround', 'https://github.com/tpope/vim-surround.git')
+    ]
+
+_dotvim = path.expanduser('~/.vim')
+_autoload = path.join(_dotvim, 'autoload')
+_bundle = path.join(_dotvim, 'bundle')
+
+def ensure_dirs():
+    if not path.exists(_autoload):
+        print 'making autoload dir'
+        makedirs(_autoload)
+    if not path.exists(_bundle):
+        print 'making bundle dir'
+        makedirs(_bundle)
+
+
+def ensure_pathogen():
+    if path.isfile(path.join(_dotvim, 'autoload/pathogen.vim')):
+        return
+
+    print 'Pathogen not installed, getting it.'
+    print 'downloading pathogen'
+    urlretrieve('https://tpo.pe/pathogen.vim',
+            path.join(_autoload, 'pathogen.vim'))
+
+
+def clone_repo(url, name):
+    print 'cloning ' + name
+    clonecmd = ['git', 'clone', url]
+    check_call(clonecmd)
+
+
+def install_plugins():
+    def find_vim_file(dv, root_dir=_dotvim):
+        for root, dirs, files in walk(root_dir):
+            for file in files:
+                if file == vp.find_file:
+                    return True
+        return False
+
+    origwd = getcwd()
+    chdir(_bundle)
+
+    for vp in plugins:
+        if find_vim_file(vp.find_file):
+            print 'found ' + vp.friendly
+            continue
+
+        clone_repo(vp.clone_url, vp.friendly)
+
+    chdir(origwd)
+
+
+if __name__ == '__main__':
+    ensure_dirs()
+    ensure_pathogen()
+    install_plugins()

@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+"""
+install-shims
+
+"""
+
+import os
+import re
+
+_previous_wd = os.getcwd()
+_script_dir = os.path.dirname(os.path.realpath(__file__))
+_base_dir = os.path.abspath(os.path.join(_script_dir, '..'))
+_shims_dir = os.path.join(_base_dir, 'shims')
+
+os.chdir(_shims_dir)
+for folder in os.listdir(_shims_dir):
+    with open (os.path.expanduser('~/.' + folder), 'a') as init_file:
+        for shim in sorted(os.listdir(folder)):
+            print 'Copying contents of %s into .%s' % (shim, folder)
+            # blank line to separate
+            init_file.write('\n')
+            # pretty print the file name as a comment for context
+            init_file.write('# %s\n' % re.sub('\d+_', '', shim))
+            with open(os.path.join(folder, shim)) as sfile:
+                init_file.writelines(sfile.readlines())
+

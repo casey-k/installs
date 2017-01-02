@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+# Installs ZSH and friends
+
+set -e
+
+script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+# prezto
+git clone --recursive git@github.com:casey-k/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+echo "export DEFAULT_USER=$USER"
+
+# install powerline fonts
+git clone https://github.com/powerline/fonts.git $HOME/.powerline-fonts
+pushd $HOME/.powerline-fonts
+./install.sh
+popd
+
+chsh -c /usr/bin/zsh $USER

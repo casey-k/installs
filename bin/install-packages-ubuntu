@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+readonly SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "${SCRIPT_DIR}/shell-utils.bash"
+
+set -e
+
+no_root
+
+UBUNTU_CODENAME=$(lsb_release -cs)
+
+#############################################################################
+# Add PPAs for necessary updates first so we can do a single apt-get update #
+#############################################################################
+# Google Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+
+# Git
+sudo add-apt-repository -y ppa:git-core/ppa
+
+# Terminator
+sudo add-apt-repository -y ppa:gnome-terminator
+
+sudo apt-get update
+
+PACKAGE_LIST=(
+    # Basics
+    curl
+    git
+    google-chrome-stable
+    jq
+    openssh-server
+    python-pip
+    subversion
+    terminator
+    vim
+    wget
+    zsh
+
+    # pyenv
+    git-core
+    gcc
+    make
+    zlib1g-dev
+    libbz2-dev
+    libreadline-dev
+    libssl-dev
+)
+
+sudo apt-get install -y ${PACKAGE_LIST[@]}
+
