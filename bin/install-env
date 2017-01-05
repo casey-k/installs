@@ -75,6 +75,7 @@ repos=(
     env
 )
 
+mkdir -p $PROJECT_DIR
 pushd $PROJECT_DIR
 for repo in ${repos[@]}; do
     repo_dir=$PROJECT_DIR/$repo
