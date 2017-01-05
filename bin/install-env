@@ -36,7 +36,7 @@ is_git_installed() {
     if is_linux; then
         # nothing special for linux. we're good
         return 0;
-    elif is _osx; then
+    elif is_osx; then
         # Use the brew version of git which is installed under /usr/local/bin
         # instead of the default which is installed under /usr/bin
         git_path=$(which git)
