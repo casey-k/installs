@@ -25,6 +25,32 @@ exists() {
     return $?
 }
 
+# A bit of custom logic in here to determine if we're using the brew or mac
+# version of git
+is_git_installed() {
+    if ! exists "git"; then
+        return 1
+    fi
+
+    # some version of git is installed, check if we have the proper versions
+    if is_linux; then
+        # nothing special for linux. we're good
+        return 0;
+    elif is _osx; then
+        # Use the brew version of git which is installed under /usr/local/bin
+        # instead of the default which is installed under /usr/bin
+        git_path=$(which git)
+        if [[ "$git_path" != /usr/local/bin/* ]]; then
+            return 1
+        fi
+
+        return 0
+    fi
+
+    # Assume nothing special for the unrecognized OS case
+    return 0
+}
+
 install_brew() {
     echo "Downloading and installing homebrew"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -60,7 +86,7 @@ soft_link_safely() {
     ln -s $original $link
 }
 
-if  exists "git" ; then 
+if  is_git_installed ; then
     echo "git already installed"
 else
     install_git
