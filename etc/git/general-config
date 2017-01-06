@@ -1,0 +1,66 @@
+[advice]
+    # Disable hints on how to stage and unstage
+    statusHints = false
+[apply]
+    # Strip trailing whitespace when applying patches
+    whitespace = fix
+
+[branch]
+    # `git pull` will always perform a rebase instead of a merge
+    autosetuprebase = always
+
+[color]
+    # Enable colors
+    ui = auto
+
+[diff]
+    # Enable the compaction Heuristic for cleaner diffs
+    compactionHeuristic = true
+    # Use mnemonic  prefixes to clarify where each part of the diff comes from
+    mnemonicPrefix = true
+    # Have git detect copies of files
+    renames = copies
+
+[grep]
+    # Show line numbers when grepping
+    lineNumber = true
+
+[interactive]
+    # User diff-highlight to highlight changes within a line
+    diffFilter = diff-highlight
+
+[merge]
+    # Use beyond compare when merging files
+    tool = bc3
+    # Show 3-way diffs (include original text) when in conflict
+    conflictstyle = diff3
+
+[mergetool]
+    # Do not prompt before each invocation of the merge tool
+    prompt = false
+
+[mergetool "bc3"]
+    # Don't ask if the merge was successful if bc3 can tell you itself
+    trustExitStatus = true
+
+[push]
+    # Refuse the push if the upstream branch is named differently from the local
+    default = simple
+
+[pager]
+    # User diff-highlight to highlight changes within a line
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff  = diff-highlight | less
+
+[rerere]
+    # Allow git to record how conflicts were resolved to help with future conflicts
+    enabled = true
+    # Auto update the index once a conflict is cleanly resolved
+    autoupdate = false
+
+[svn]
+    # Remove empty directories when using git-svn
+    rmdir = true
+
+

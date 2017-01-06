@@ -27,6 +27,7 @@ ${SCRIPT_DIR}/install-python-packages || die "Failed to install python packages"
 ${SCRIPT_DIR}/install-nvm || die "Failed to install nvm"
 ${SCRIPT_DIR}/install-zsh || die "Failed to install ZSH"
 ${SCRIPT_DIR}/install-vim-plugins || die "Failed to install vim plugins"
+${SCRIPT_DIR}/install-git-config || die "Failed to install git configuration"
 
 # Also install vimrc
 cp ${SCRIPT_DIR}/../templates/vimrc ${HOME}/.vimrc || die "Failed to install .vimrc"

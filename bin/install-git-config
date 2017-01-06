@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Add my personal config
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
+config_dir=$(cd "${script_dir}/../etc/git"; pwd)
+
+git config --global include.path "${config_dir}/aliases" "etc/git/aliases"
+git config --global include.path "${config_dir}/general-config" "etc/git/general-config"

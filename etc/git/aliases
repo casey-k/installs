@@ -1,0 +1,13 @@
+[alias]
+    br = branch
+    ci = commit
+    co = checkout
+    dc = diff --cached
+    # see the revision history similar to gitk but in the command line
+    lol = log --pretty=format:'%C(yellow)%h %C(blue bold)%ad%C(reset)%C(auto)%d %C(reset)%s %C(green)[%cn]' --date=short --all --graph --decorate
+    # pretty one-line log with tags, branches and authors
+    ls = log --pretty=format:'%C(yellow)%h %C(blue bold)%ad %C(reset)%C(auto)%d %C(reset)%s%C(green) [%cn]' --decorate --date=short
+    # more verbose log that shows changed files
+    ll = log --pretty=format:'%C(yellow)%h %C(blue bold)%ad %C(reset)%C(auto)%d %C(reset)%s%C(green) [%cn]' --decorate --date=short --stat
+    nfm = merge --no-ff
+    st = status
