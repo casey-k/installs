@@ -94,7 +94,7 @@ fi
 
 # pull down the utility repos
 PROJECT_DIR=$HOME/casey-k
-GIT_BASE="git@github.com"
+GIT_BASE="git@github.com:casey-k"
 
 repos=(
     installs
@@ -111,7 +111,7 @@ for repo in ${repos[@]}; do
        continue
     fi
 
-    git clone ${GIT_BASE}:${repo}
+    git clone ${GIT_BASE}/${repo}
 done
 popd
 
