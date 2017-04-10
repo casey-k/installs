@@ -13,6 +13,36 @@ if ! exists "brew"; then
     exit 1
 fi
 
+##
+# Adds a shell to the list of the legit shells
+##
+add_shell() {
+    new_shell=$1
+
+    local shell_path="$(brew --prefix ${new_shell})/bin/${new_shell}"
+    [[ -n "$(grep "${shell_path}" /private/etc/shells)" ]] || sudo bash -c "echo "${shell_path}" >> /private/etc/shells"
+}
+
+##
+# Installs bash and adds the new shell to the list of legit shells
+##
+install_bash() {
+    brew install bash
+
+    echo "Install script adding Bash 4.x to /etc/shells ..."
+    add_shell bash
+}
+
+##
+# Installs ZSH and adds the new shell to the list of legit shells
+##
+install_zsh() {
+    brew install zsh
+
+    echo "Install script adding brew's ZSH to /etc/shells ..."
+    add_shell zsh
+}
+
 # Recommended utilities
 # https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 PACKAGE_LIST=(
@@ -60,6 +90,9 @@ CASK_INSTALLS=(
 
 brew update
 brew upgrade --all
+
+install_bash
+install_zsh
 
 brew install "${PACKAGE_LIST[@]}"
 brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
