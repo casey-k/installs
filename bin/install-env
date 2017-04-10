@@ -99,7 +99,6 @@ GIT_BASE="git@github.com:casey-k"
 repos=(
     installs
     env
-    prezto
 )
 
 mkdir -p $PROJECT_DIR
