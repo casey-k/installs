@@ -85,6 +85,7 @@ DEFAULT_NAME_PACKAGE_LIST=(
 CASK_INSTALLS=(
     beyond-compare
     iterm2
+    java
     slack
 )
 
@@ -94,9 +95,9 @@ brew upgrade --all
 install_bash
 install_zsh
 
+brew cask install ${CASK_INSTALLS[@]}
 brew install "${PACKAGE_LIST[@]}"
 brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
-brew cask install ${CASK_INSTALLS[@]}
 brew install macvim --override-system-vim --custom-system-icons
 
 # Install default preferences
