@@ -52,10 +52,11 @@ PACKAGE_LIST=(
     curl
     gawk
     git
-    homebrew/dupes/gzip
+    gzip
     jq
     less
     maven
+    neovim/neovim/neovim
     openssh
     openssl
     phantomjs
@@ -71,15 +72,14 @@ PACKAGE_LIST=(
 )
 
 DEFAULT_NAME_PACKAGE_LIST=(
-    /homebrew/dupes/ed
+    ed
     findutils
     gnu-indent
     gnu-sed
     gnu-tar
     gnu-which
     gnutls
-    /homebrew/dupes/grep
-    /homebrew/dupes/gzip
+    grep
 )
 
 CASK_INSTALLS=(
@@ -90,7 +90,7 @@ CASK_INSTALLS=(
 )
 
 brew update
-brew upgrade --all
+brew upgrade
 
 install_bash
 install_zsh
@@ -98,7 +98,6 @@ install_zsh
 brew cask install ${CASK_INSTALLS[@]}
 brew install "${PACKAGE_LIST[@]}"
 brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
-brew install macvim --override-system-vim --custom-system-icons
 
 # Install default preferences
 ${SCRIPT_DIR}/install-mac-preferences
