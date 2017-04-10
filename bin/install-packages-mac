@@ -67,5 +67,5 @@ brew cask install ${CASK_INSTALLS[@]}
 brew install macvim --override-system-vim --custom-system-icons
 
 # Install default preferences
-${SCRIPT_DIR}/install-osx-preferences
+${SCRIPT_DIR}/install-mac-preferences
 

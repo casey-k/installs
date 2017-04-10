@@ -14,7 +14,7 @@ if is_linux; then
 elif is_osx; then
     echo "Installing packages for OS X. See install-packages-osx and install-jdk-osx"
     ${SCRIPT_DIR}/install-shells-mac || die "Failed to install shells"
-    ${SCRIPT_DIR}/install-packages-osx || die "Failed to install third party packages"
+    ${SCRIPT_DIR}/install-packages-mac || die "Failed to install third party packages"
 else
     die "Unrecognized OS. Exiting..."
 fi
