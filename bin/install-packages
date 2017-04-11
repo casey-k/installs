@@ -18,8 +18,6 @@ else
     die "Unrecognized OS. Exiting..."
 fi
 
-${SCRIPT_DIR}/install-shims || die "Failed to install shims"
-
 # source all dot files 
 source $HOME/.profile
 
