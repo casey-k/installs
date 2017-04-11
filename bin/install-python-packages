@@ -7,14 +7,18 @@ set -e
 if [ ! -d "$HOME/.pyenv" ]; then
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
-    # reinit
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 fi
+
+# reinit
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # install python
 python_version=2.7.12
-pyenv install $python_version
+if ! pyenv  versions | grep -q "${python_version}" ; then
+    pyenv install $python_version
+fi
+
 # set the global version used for everyone
 pyenv global $python_version
 
