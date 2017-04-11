@@ -6,20 +6,30 @@ set -e
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+PREZTO_DIR="${ZDOTDIR:-$HOME}/.zprezto"
+
 # prezto
-git clone --recursive git@github.com:casey-k/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+if [ ! -d "$PREZTO_DIR" ]; then
+    git clone --recursive git@github.com:casey-k/prezto.git "${PREZTO_DIR}"
+fi
 
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    dotfile="${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    if [ ! -f "$dotfile" ]; then
+        ln -s "$rcfile" "$dotfile"
+    fi
 done
 
 echo "export DEFAULT_USER=$USER"
 
 # install powerline fonts
-git clone https://github.com/powerline/fonts.git $HOME/.powerline-fonts
-pushd $HOME/.powerline-fonts
-./install.sh
-popd
+POWERLINE_DIR="${HOME}/.powerline-fonts"
+if [ ! -d "$POWERLINE_DIR" ]; then
+    git clone https://github.com/powerline/fonts.git "$POWERLINE_DIR"
+    pushd "$POWERLINE_DIR"
+    ./install.sh
+    popd
+fi
 
-chsh -c /usr/bin/zsh $USER
+chsh -s $(which zsh) $USER

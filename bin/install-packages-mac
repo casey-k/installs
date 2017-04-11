@@ -19,7 +19,8 @@ fi
 add_shell() {
     new_shell=$1
 
-    local shell_path="$(brew --prefix ${new_shell})/bin/${new_shell}"
+    # For now hard code to /usr/local/shell since brew --prefix results in /usr/local/opt/bin/shell
+    local shell_path="/usr/local/bin/${new_shell}"
     [[ -n "$(grep "${shell_path}" /private/etc/shells)" ]] || sudo bash -c "echo "${shell_path}" >> /private/etc/shells"
 }
 
