@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Loads up iterm2 preferences saved in the configs directory
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/casey-k/installs/configs/iterm2"
+

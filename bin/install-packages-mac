@@ -102,4 +102,5 @@ brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
 
 # Install default preferences
 ${SCRIPT_DIR}/install-mac-preferences
+${SCRIPT_DIR}/install-iterm2-preferences
 
