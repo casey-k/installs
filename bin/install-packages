@@ -12,7 +12,7 @@ if is_linux; then
     echo "Installing packages for Ubuntu. See install-packages-ubuntu"
     ${SCRIPT_DIR}/install-packages-ubuntu || die "Failed to install third party packages"
 elif is_osx; then
-    echo "Installing packages for OS X. See install-packages-osx and install-jdk-osx"
+    echo "Installing packages for OS X. See install-packages-mac"
     ${SCRIPT_DIR}/install-packages-mac || die "Failed to install third party packages"
 else
     die "Unrecognized OS. Exiting..."
