@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 
-defaults write com.hegenberg.BetterSnapTool registeredHotkeys -dict-add '{
-        0 =         {
+defaults write com.hegenberg.BetterSnapTool registeredHotkeys -dict-add 0 '{
             keyCode = 126;
             modifiers = 8388864;
-        };
-        10 =         {
+        }'
+defaults write com.hegenberg.BetterSnapTool registeredHotkeys -dict-add 10 '{
             keyCode = 125;
             modifiers = 8388864;
-        };
-        2 =         {
+        }'
+defaults write com.hegenberg.BetterSnapTool registeredHotkeys -dict-add 2 '{
             keyCode = 123;
             modifiers = 8388864;
-        };
-        4 =         {
+        }'
+defaults write com.hegenberg.BetterSnapTool registeredHotkeys -dict-add 4 '{
             keyCode = 124;
             modifiers = 8388864;
-        };
-    };'
+        }'
