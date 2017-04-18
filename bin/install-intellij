@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Installs a new version of IntelliJ using update-alternatives
+
+print_usage() {
+    echo "Usage: install-intellij INTELLIJ_TAR_BALL"
+}
+
+if [ $# -ne 1 ]; then
+    print_usage
+    exit 1
+fi
+
+intellij_tarball=$1
+if [[ $intellij_tarball != *.tar.gz ]]; then
+    echo "Expected a *.tar.gz file, but got $intellij_tarball"
+    print_usage
+    exit 2
+fi
+
+BASE_INSTALL_DIR=/opt/jetbrains/intellij
+sudo mkdir -p $BASE_INSTALL_DIR
+
+# grab the previoysly installed version if any to persist config files
+previous_install_dir=$(update-alternatives --query intellij 2>/dev/null | grep "Best")
+if [[ -n $previous_install_dir ]]; then
+    # Make sure to strip the "Best: " and "/bin/idea.sh" from the previous install dir
+    previous_install_dir=${previous_install_dir:6:-12}
+fi
+
+sudo tar -xzvf $intellij_tarball --directory $BASE_INSTALL_DIR
+install_dir=$(ls -td -- $BASE_INSTALL_DIR/*/ | head -1)
+# strip the trailing slash
+install_dir=${install_dir::-1}
+
+echo "previously installed version: $previous_install_dir"
+echo "new version: $install_dir"
+
+# Update alternatives
+# Assume that the latest one installed is the most preferred
+priority=$(update-alternatives --query intellij 2>/dev/null | grep "Alternative" | wc -l) || 0
+sudo update-alternatives --install /usr/bin/intellij intellij ${install_dir}/bin/idea.sh $priority
+
+# Copy over startup files
+files_to_copy=(
+    "bin/idea.vmoptions"
+    "bin/idea64.vmoptions"
+    "bin/idea.properties"
+)
+
+if [[ -d $previous_install_dir ]] && [[ "$previous_install_dir" != "$install_dir" ]]; then
+    for file in ${files_to_copy[@]}; do
+        sudo cp ${previous_install_dir}/${file} ${install_dir}/${file}
+    done
+fi
+
