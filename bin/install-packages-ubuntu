@@ -50,3 +50,7 @@ PACKAGE_LIST=(
 
 sudo apt-get install -y ${PACKAGE_LIST[@]}
 
+# Also install terminator config
+TERMINATOR_CONFIG_DIR="${HOME}/.config/terminator"
+mkdir -p "${TERMINATOR_CONFIG_DIR}"
+cp ${SCRIPT_DIR}/../configs/terminator/config "${TERMINATOR_CONFIG_DIR}" || die "Failed to install terminator config"
