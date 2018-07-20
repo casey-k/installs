@@ -15,7 +15,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # install python
-python_version=2.7.12
+python_version=2.7.15
 if ! pyenv  versions | grep -q "${python_version}" ; then
     pyenv install $python_version
 fi
