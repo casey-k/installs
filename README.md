@@ -21,9 +21,13 @@ Unlock the SSH key so you don't have to unlock it for every repo:
 ssh-add ~/.ssh/git-hub-id
 ```
 
-Run the install-env script:
+Run either curl or wget to pull down and execute the install-env script:
 ```bash
 curl https://raw.githubusercontent.com/casey-k/installs/master/bin/install-env | bash
+```
+
+```bash
+wget -q -O - https://raw.githubusercontent.com/casey-k/installs/master/bin/install-env | bash
 ```
 
 Once all the repos are pulled down, run install-packages:
