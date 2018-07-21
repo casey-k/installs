@@ -46,6 +46,9 @@ PACKAGE_LIST=(
     libbz2-dev
     libreadline-dev
     libssl-dev
+
+    # mainly for git-num
+    ruby-full
 )
 
 sudo apt-get install -y ${PACKAGE_LIST[@]}

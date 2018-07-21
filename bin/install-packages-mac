@@ -64,6 +64,7 @@ PACKAGE_LIST=(
     pyenv
     pyenv-virtualenv
     rsync
+    ruby
     ssh-copy-id
     svn
     tmux
