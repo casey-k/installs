@@ -24,6 +24,7 @@ if [ -f "${HOME}/.profile" ]; then
 fi
 
 ${SCRIPT_DIR}/install-python-packages || die "Failed to install python packages"
+${SCRIPT_DIR}/install-ruby-packages || die "Failed to install ruby packages"
 ${SCRIPT_DIR}/install-nvm || die "Failed to install nvm"
 ${SCRIPT_DIR}/install-zsh || die "Failed to install ZSH"
 ${SCRIPT_DIR}/install-vim-plugins || die "Failed to install vim plugins"
