@@ -5,10 +5,11 @@ set -e
 
 install_gitnum() {
     LATEST_RELEASE_URL=$(curl -s https://api.github.com/repos/schreifels/git-num/releases | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
-    DESTINATION_PATH=/usr/local/bin/git-num
+    DESTINATION_PATH=git-num
 
     curl -L -o "$DESTINATION_PATH" "$LATEST_RELEASE_URL"
     chmod +x "$DESTINATION_PATH"
+    sudo mv "$DESTINATION_PATH" /usr/local/bin/git-num
 }
 
 install_gitnum
