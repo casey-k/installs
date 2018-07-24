@@ -8,15 +8,18 @@ set -e
 no_root
 
 UBUNTU_CODENAME=$(lsb_release -cs)
+add-repo() {
+    repo="$1"
+    if ! grep -q "deb .*${repo}" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+        sudo add-apt-repository -y "ppa:${repo}"
+    fi
+}
 
 #############################################################################
 # Add PPAs for necessary updates first so we can do a single apt-get update #
 #############################################################################
-# Git
-sudo add-apt-repository -y ppa:git-core/ppa
-
-# Terminator
-sudo add-apt-repository -y ppa:gnome-terminator
+add-repo "git-core/ppa"
+add-repo "gnome-terminator"
 
 sudo apt-get update
 
