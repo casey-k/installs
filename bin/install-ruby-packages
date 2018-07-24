@@ -5,7 +5,7 @@ set -e
 
 install_gitnum() {
     local FINAL_INSTALL_LOC="/usr/local/bin/git-num"
-    if [ -f "$FINAL_INSTALL_LOC" ];
+    if [ -f "$FINAL_INSTALL_LOC" ]; then
         echo "git-num already installed. exiting"
         return
     fi
