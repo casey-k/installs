@@ -116,5 +116,5 @@ done
 popd
 
 # Install the symlinks for the utility repos
-soft_link_safely ${PROJECT_DIR}/casey-k/env $HOME/ck-env
+soft_link_safely ${PROJECT_DIR}/env $HOME/ck-env
 
