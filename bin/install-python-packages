@@ -15,13 +15,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # install python
-<<<<<<< HEAD
-python_version=2.7.15
-||||||| parent of fc7bc9c... Fixing install script for mac
-python_version=2.7.12
-=======
 python_version=3.8.2
->>>>>>> fc7bc9c... Fixing install script for mac
 if ! pyenv  versions | grep -q "${python_version}" ; then
     pyenv install $python_version
 fi
