@@ -9,7 +9,7 @@ vim plugins.
 """
 from collections import namedtuple
 from os import path, makedirs, walk, chdir, getcwd
-from urllib import urlretrieve
+from urllib.request import urlretrieve
 from subprocess import check_call
 
 
@@ -36,10 +36,10 @@ _bundle = path.join(_dotvim, 'bundle')
 
 def ensure_dirs():
     if not path.exists(_autoload):
-        print 'making autoload dir'
+        print('making autoload dir')
         makedirs(_autoload)
     if not path.exists(_bundle):
-        print 'making bundle dir'
+        print('making bundle dir')
         makedirs(_bundle)
 
 
@@ -47,14 +47,14 @@ def ensure_pathogen():
     if path.isfile(path.join(_dotvim, 'autoload/pathogen.vim')):
         return
 
-    print 'Pathogen not installed, getting it.'
-    print 'downloading pathogen'
+    print('Pathogen not installed, getting it.')
+    print('downloading pathogen')
     urlretrieve('https://tpo.pe/pathogen.vim',
             path.join(_autoload, 'pathogen.vim'))
 
 
 def clone_repo(url, name):
-    print 'cloning ' + name
+    print('cloning ' + name)
     clonecmd = ['git', 'clone', url]
     check_call(clonecmd)
 
@@ -72,7 +72,7 @@ def install_plugins():
 
     for vp in plugins:
         if find_vim_file(vp.find_file):
-            print 'found ' + vp.friendly
+            print('found ' + vp.friendly)
             continue
 
         clone_repo(vp.clone_url, vp.friendly)

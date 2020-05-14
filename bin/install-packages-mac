@@ -48,19 +48,26 @@ install_zsh() {
 # https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 PACKAGE_LIST=(
     binutils
-    homebrew/dupes/diffutils
     coreutils
     curl
+    diffutils
+    ed
+    findutils
     gawk
     git
+    gnu-indent
+    gnu-sed
+    gnu-tar
+    gnu-which
+    gnutls
+    grep
     gzip
     jq
     less
     maven
-    neovim/neovim/neovim
+    neovim
     openssh
     openssl
-    phantomjs
     pyenv
     pyenv-virtualenv
     rsync
@@ -99,7 +106,6 @@ install_zsh
 
 brew cask install ${CASK_INSTALLS[@]}
 brew install "${PACKAGE_LIST[@]}"
-brew install --with-default-names "${DEFAULT_NAME_PACKAGE_LIST[@]}"
 
 # Install default preferences
 ${SCRIPT_DIR}/install-mac-preferences
