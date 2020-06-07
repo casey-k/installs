@@ -1,0 +1,27 @@
+---
+# third party repositores to add
+apt_repositories:
+  git:
+    repo: ppa:git-core/ppa
+    filename: git
+    keyserver: keyserver.ubuntu.com
+    id: E1DD270288B4E6030699E45FA1715D88E1DF1F24
+  chrome:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    filename: google-chrome
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+apt_packages:
+  - curl
+  - git
+  - google-chrome-stable
+  - jq
+  - openssh-server
+  - python3-pip
+  - ruby-full
+  - terminator
+  - vim
+  - wget
+  - zsh
+
+terminator_config_dir: ~/.config/terminator

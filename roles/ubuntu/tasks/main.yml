@@ -1,0 +1,40 @@
+---
+# Add Keys
+- name: Add Apt keyserver
+  apt_key:
+    keyserver: "{{ item.value.keyserver }}"
+    id: "{{ item.value.id }}"
+  with_dict: "{{ apt_repositories }}"
+  when: "'keyserver' in item.value"
+  become: yes
+
+- name: Add Apt Key URLs
+  apt_key:
+    url: "{{ item.value.url }}"
+  with_dict: "{{ apt_repositories }}"
+  when: "'url' in item.value"
+  become: yes
+
+# Add external repositories
+- name: Add external Apt repositories
+  apt_repository:
+    repo: "{{ item.value.repo }}"
+    filename: "{{ item.value.filename }}"
+  with_dict: "{{ apt_repositories }}"
+  become: yes
+
+
+# Install packages
+- name: Install Apt packages
+  apt:
+    name: "{{ apt_packages }}"
+    update_cache: yes
+    state: latest
+  become: yes
+
+# Copy over Terminator config
+- name: Ensure Terminator config dir exits
+  file: path={{terminator_config_dir}} state=directory
+
+- name: Configure Terminator
+  copy: src=terminator dest={{terminator_config_dir}}/config

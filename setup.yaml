@@ -1,0 +1,6 @@
+---
+# installs required packages for dev steup
+- hosts: all
+  connection: local
+  roles:
+    - ubuntu
