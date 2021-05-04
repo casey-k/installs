@@ -3,4 +3,6 @@
 - hosts: all
   connection: local
   roles:
+    - prechecks 
     - ubuntu
+    - python

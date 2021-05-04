@@ -1,0 +1,6 @@
+---
+# tasks file for prechecks
+- name: Ensure Password is correct
+  command: echo "Password is correct"
+  run_once: true
+  become: yes

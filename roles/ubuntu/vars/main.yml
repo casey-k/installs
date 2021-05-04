@@ -18,6 +18,7 @@ apt_packages:
   - jq
   - openssh-server
   - python3-pip
+  - python-setuptools
   - ruby-full
   - terminator
   - vim

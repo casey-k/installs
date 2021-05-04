@@ -1,0 +1,5 @@
+---
+- name: Install PIP Packages
+  pip:
+    name: "{{ pip_packages }}"
+    state: latest
