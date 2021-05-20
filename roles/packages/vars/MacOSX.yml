@@ -1,0 +1,46 @@
+---
+brew_packages:
+  - bash-completion
+  - binutils
+  - coreutils
+  - curl
+  - diffutils
+  - findutils
+  - gawk
+  - git
+  - gnu-sed
+  - gnu-tar
+  - gnu-which
+  - gnutls
+  - grep
+  - gzip
+  - jq
+  - less
+  - maven
+  - neovim
+  - openssh
+  - openssl
+  - rsync
+  - ssh-copy-id
+  - tmux
+  - tree
+  - unzip
+  - watch
+  - wget
+
+brew_casks:
+  - atom
+  - beyond-compare
+  - iterm2
+  - jetbrains-toolbox
+
+key_equivalents:
+  - { name: '-g', command: 'Copy', key: '^c' }
+  - { name: '-g', command: 'Cut', key: '^x' }
+  - { name: '-g', command: 'Paste', key: '^v' }
+  - { name: '-g', command: 'Select All', key: '^a' }
+  - { name: 'com.google.Chrome', command: 'Close Tab', key: '^w' }
+  - { name: 'com.google.Chrome', command: 'Find...', key: '^f' }
+  - { name: 'com.google.Chrome', command: 'New Tab', key: '^t' }
+  - { name: 'com.google.Chrome', command: 'New Window', key: '^n' }
+  - { name: 'com.google.Chrome', command: 'Open Location...', key: '^l' }

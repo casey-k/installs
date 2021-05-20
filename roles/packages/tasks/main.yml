@@ -1,4 +1,6 @@
 ---
 
 - name: "Install OS specific packages"
-  include_tasks: "{{ ansible_distribution }}.yml"
+  block:
+    - include_vars: "{{ ansible_distribution }}.yml"
+    - include_tasks: "{{ ansible_distribution }}.yml"

@@ -1,0 +1,76 @@
+---
+- name: Enable tap to click
+  osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: Clicking
+    type: bool
+    value: true
+
+- name: Enable tap to click on the login screen for ths user
+  osx_defaults:
+    host: currentHost
+    key: com.apple.mouse.tapBehavior
+    type: int
+    value: 1
+
+- name: Enable tap to click on the login screen for all users
+  osx_defaults:
+    key: com.apple.mouse.tapBehavior
+    type: int
+    value: 1
+
+- name: Disable natural scrolling
+  osx_defaults:
+    key: com.apple.swipescrolldirection
+    type: bool
+    value: false
+
+- name: Disable press-and-hold
+  osx_defaults:
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: true
+
+- name: Set blazingly fast key repeat
+  osx_defaults:
+    key: keyRepeat
+    type: int
+    value: 1
+
+- name: Auto hide the dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: true
+
+- name: Show all file extensions
+  osx_defaults:
+      key: AppleShowAllExtensions
+      type: bool
+      value: true
+
+- name: Set Finder Preferences
+  osx_defaults:
+    domain: com.apple.Finder
+    key: ShowPathbar
+    type: bool
+    value: true
+
+- name: Add Keyboard Shortcuts
+  command:
+    cmd: "defaults write {{ item.name }} NSUserKeyEquivalents -dict-add \"{{ item.command }}\" \"{{ item.key }}\""
+  loop: "{{ key_equivalents }}"
+
+- name: Load iterm2 Preferences from Custom Folder
+  osx_defaults:
+    domain: com.googlecode.iterm2.plist
+    key: LoadPrefsFromCustomFolder
+    type: bool
+    value: true
+
+- name: Set iterm2 preferences file
+  osx_defaults:
+    domain: com.googlecode.iterm2.plist
+    key: PrefsCustomFolder
+    value: "~/casey-k/installs/configs/iterm2"

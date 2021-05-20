@@ -1,0 +1,22 @@
+---
+- name: Update and Upgrade Brew
+  homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: Install MacOS Packages
+  homebrew:
+    package: "{{ brew_packages }}"
+    state: latest
+
+- name: Update and Upgrade Brew Casks
+  homebrew_cask:
+    upgrade_all: true
+
+- name: Install Homebrew Apps
+  homebrew_cask:
+    cask: "{{ brew_casks }}"
+    state: latest
+
+- name: Set Mac Preferences
+  include_tasks: MacOSX-preferences.yml
