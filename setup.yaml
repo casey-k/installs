@@ -3,5 +3,6 @@
 - hosts: all
   connection: local
   roles:
-    - prechecks 
+    - prechecks
     - packages
+    - python
