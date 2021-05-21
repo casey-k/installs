@@ -1,0 +1,19 @@
+---
+- name: Check if git-num exists
+  stat:
+    path: "{{ git_num_path }}"
+  register: git_num_install
+
+- name: Install git-num
+  block:
+    - name: Retrieve git-num release url
+      uri:
+        url: "{{ git_num_install_url }}"
+      register: git_num_response
+
+    - name: Download git-num
+      get_url:
+        url: "{{ git_num_response.json[0].assets[0].browser_download_url }}"
+        dest: "{{ git_num_path }}"
+        mode: a+rx
+  when: not git_num_install.stat.exists

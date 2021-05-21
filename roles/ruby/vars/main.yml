@@ -1,0 +1,4 @@
+---
+git_num_path: /usr/local/bin/git-num
+
+git_num_install_url: https://api.github.com/repos/schreifels/git-num/releases
