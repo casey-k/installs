@@ -3,3 +3,4 @@ roles:
   # Pyenv https://galaxy.ansible.com/markosamuli/pyenv
   - name: markosamuli.pyenv
   - name: zzet.rbenv
+  - name: stephdewit.nvm
