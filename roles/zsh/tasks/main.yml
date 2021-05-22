@@ -1,0 +1,9 @@
+---
+# - name: Pull presonal prezto repo
+#   git:
+#     repo: "{{ prezto_repo }}"
+#     dest: "{{ prezto_home }}"
+
+- name: Install ZSH runcoms
+  include_tasks: link_runcom.yml
+  loop: "{{ lookup('fileglob', '{{ prezto_runcoms }}/z*', wantlist=True) }}"

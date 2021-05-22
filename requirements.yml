@@ -4,3 +4,4 @@ roles:
   - name: markosamuli.pyenv
   - name: zzet.rbenv
   - name: stephdewit.nvm
+  - name: sicruse.powerline-fonts

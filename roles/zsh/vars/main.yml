@@ -1,0 +1,4 @@
+---
+prezto_home: ~/.zprezto
+prezto_repo: git@github.com:casey-k/prezto.git
+prezto_runcoms: "{{ prezto_home }}/runcoms"

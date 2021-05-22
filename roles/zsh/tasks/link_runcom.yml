@@ -1,0 +1,24 @@
+---
+- name: Get Runcom name
+  set_fact:
+    runcom_name: "{{ item | basename }}"
+
+- name: Print runcom runcom_name
+  debug:
+    var: runcom_name
+
+- name: Check if existing runcom exists
+  stat:
+    path: "~/.{{ runcom_name }}"
+  register: current_runcom
+
+- name: Backup existing runcom
+  command: "mv ~/.{{ runcom_name }} ~/.{{ runcom_name }}.bak"
+  when: current_runcom.stat.exists and not current_runcom.stat.islnk
+
+- name: Link runcoms
+  file:
+    src: "{{ item }}"
+    dest: "~/.{{ runcom_name }}"
+    state: link
+  when: not current_runcom.stat.exists or (current_runcom.stat.exists and not current_runcom.stat.islnk)
