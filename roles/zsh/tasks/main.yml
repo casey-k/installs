@@ -1,8 +1,8 @@
 ---
-# - name: Pull presonal prezto repo
-#   git:
-#     repo: "{{ prezto_repo }}"
-#     dest: "{{ prezto_home }}"
+- name: Pull presonal prezto repo
+  git:
+    repo: "{{ prezto_repo }}"
+    dest: "{{ prezto_home }}"
 
 - name: Install ZSH runcoms
   include_tasks: link_runcom.yml
