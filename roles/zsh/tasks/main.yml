@@ -7,3 +7,11 @@
 - name: Install ZSH runcoms
   include_tasks: link_runcom.yml
   loop: "{{ lookup('fileglob', '{{ prezto_runcoms }}/z*', wantlist=True) }}"
+
+- name: Install Powerline Fonts
+  include_role:
+    name: sicruse.powerline-fonts
+  vars:
+    all_users:
+      - user: "{{ ansible_facts.user_id }}"
+        homedir: "{{ ansible_facts.user_dir }}"
