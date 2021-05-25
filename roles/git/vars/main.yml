@@ -1,0 +1,4 @@
+---
+# vars file for git
+env_home: ~/casey-k/env
+env_repo: git@github.com:casey-k/env.git

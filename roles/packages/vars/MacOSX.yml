@@ -7,7 +7,6 @@ brew_packages:
   - diffutils
   - findutils
   - gawk
-  - git
   - gnu-sed
   - gnu-tar
   - gnu-which
@@ -17,7 +16,6 @@ brew_packages:
   - jq
   - less
   - maven
-  - neovim
   - openssh
   - openssl
   - rsync

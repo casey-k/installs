@@ -1,0 +1,5 @@
+---
+# defaults file for git
+
+git_config_path: "{{ role_path }}/templates/general-config"
+git_alias_path: "{{ role_path }}/templates/aliases"

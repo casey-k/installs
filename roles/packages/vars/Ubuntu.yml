@@ -13,7 +13,6 @@ apt_repositories:
 
 apt_packages:
   - curl
-  - git
   - google-chrome-stable
   - jq
   - openssh-server
@@ -21,7 +20,6 @@ apt_packages:
   - python-setuptools
   - ruby-full
   - terminator
-  - vim
   - wget
   - zsh
 

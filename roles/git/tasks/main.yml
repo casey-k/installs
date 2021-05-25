@@ -1,0 +1,23 @@
+---
+# tasks file for git
+- name: Install git
+  package:
+    name: git
+    state: latest
+
+- name: Pull presonal env bin for diff-highlight
+  git:
+    repo: "{{ env_repo }}"
+    dest: "{{ env_home }}"
+
+- name: Check if global is installed
+  command: git config --global --get-all include.path
+  register: git_included_paths
+
+- name: Install config
+  command: "git config --global --add include.path {{ git_config_path }}"
+  when: "git_config_path not in git_included_paths.stdout_lines"
+
+- name: Install aliases
+  command: "git config --global --add include.path {{ git_alias_path }}"
+  when: "git_config_path not in git_included_paths.stdout_lines"
