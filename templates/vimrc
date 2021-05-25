@@ -1,10 +1,6 @@
 " Amalgamation of settings lifted from, among others:
 " Clone and own from https://github.com/GitOnUp/environs/blob/master/vimrc
 
-filetype plugin indent on
-execute pathogen#infect()
-
-
                               " Basic Settings "
 
 syntax enable
@@ -42,18 +38,6 @@ set fillchars+=vert:\ " Remove | in splits (trailing whitespace significant)
 set laststatus=2 " status line always visible (good for airline plugin).
 
 
-                              " Unite Settings "
-
-call unite#filters#matcher_default#use(['matcher_glob'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_rec/async','sorters','sorter_rank')
-let g:unite_source_file_rec_max_cache_files = 0
-call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
-            \ 'max_candidates', 0)
-let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg"
-            \ --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
-
-
                              " Airline Settings "
 
 let g:airline_powerline_fonts = 1
@@ -65,4 +49,3 @@ nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10
 nnoremap <Leader>b :Unite -buffer-name=Buffers -winheight=10 buffer<cr>
 nnoremap <Leader>n :NERDTreeToggle<cr>
 nnoremap <silent> <Leader>cw :%s/\s\+$// <bar> ''<cr> " remove trailing \s
-

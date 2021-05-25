@@ -1,0 +1,46 @@
+---
+# note: forked from https://github.com/ctorgalson/ansible-role-vim/ as ansible was hanging on executue...
+- name: Install required Vim and Vim-related packages.
+  package:
+    name: "{{ vim_installed_packages }}"
+    state: present
+
+- name: Perform setup tasks for Vim and Vim plugin install.
+  include_tasks: "setup.yml"
+
+- name: Peform Vim plugin installation.
+  include_tasks: "install-plugins.yml"
+  loop:
+    - list: "{{ vim_start_installed_plugins }}"
+      directory: "{{ vim_pack_start_subdirectory }}"
+      type: "start"
+    - list: "{{ vim_opt_installed_plugins }}"
+      directory: "{{ vim_pack_opt_subdirectory }}"
+      type: "opt"
+  loop_control:
+    loop_var: plugin_data
+
+- name: Perform Vim plugin removal.
+  include_tasks: "remove-plugins.yml"
+  loop:
+    - list: "{{ vim_start_removed_plugins }}"
+      directory: "{{ vim_pack_start_subdirectory }}"
+      type: "start"
+    - list: "{{ vim_opt_removed_plugins }}"
+      directory: "{{ vim_pack_opt_subdirectory }}"
+      type: "opt"
+  loop_control:
+    loop_var: plugin_data
+
+- name: Make sure plugins have correct owner and group.
+  file:
+    path: "{{ vim_plugin_parent_directory }}/{{ vim_pack_subdirectory }}"
+    owner: "{{ vim_owner }}"
+    recurse: true
+  changed_when: false
+
+- name: Link vimrc
+  file:
+    src: "{{ vim_rc_template }}"
+    dest: "{{ vim_rc_dest }}"
+    state: link

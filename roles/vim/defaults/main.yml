@@ -1,0 +1,20 @@
+---
+# defaults file for vim
+
+vim_rc_dest: '~/.vimrc'
+
+vim_installed_packages:
+  - "vim"
+vim_removed_packages: []
+vim_owner: "{{ ansible_facts.user_id }}"
+vim_pack_subdirectory: "ansible-managed"
+vim_start_installed_plugins: []
+# - repo: "https://github.com/scrooloose/nerdtree.git"
+#   version: "HEAD"
+vim_opt_installed_plugins: []
+# - repo: "https://github.com/scrooloose/nerdtree.git"
+#   version: "HEAD"
+vim_start_removed_plugins: []
+# - nerdtree
+vim_opt_removed_plugins: []
+# - vdebug

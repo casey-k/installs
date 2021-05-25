@@ -1,0 +1,12 @@
+---
+vim_start_plugins:
+  - repo: 'https://github.com/scrooloose/nerdtree.git'
+  - repo: 'https://github.com/tomasr/molokai.git'
+  - repo: 'https://github.com/bling/vim-airline'
+  - repo: 'https://github.com/Shougo/vimproc.vim.git'
+  - repo: 'https://github.com/honza/vim-snippets.git'
+  - repo: 'https://github.com/tomtom/tlib_vim.git'
+  - repo: 'https://github.com/tomtom/tcomment_vim.git'
+  - repo: 'https://github.com/tpope/vim-surround.git'
+
+vim_rc_template: '~/casey-k/installs/templates/vimrc'
