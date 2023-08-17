@@ -1,5 +1,13 @@
 # installs
 
+## Ansible Instructions (WIP)
+
+```bash
+ansible-playbook setup.yaml -i hosts --ask-become-pass
+```
+
+## Legacy Instructions
+
 Installs all the necessary repos to bootstrap a new dev environment:
 * env
 * installs

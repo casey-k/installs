@@ -14,3 +14,4 @@
     d = num diff
     r = num reset
     co = num checkout
+    sw = num switch

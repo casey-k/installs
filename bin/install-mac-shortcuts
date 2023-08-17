@@ -7,9 +7,12 @@ defaults write -g NSUserKeyEquivalents -dict-add 'Paste' "^v"
 defaults write -g NSUserKeyEquivalents -dict-add 'Select All' "^a"
 
 # Chrome
+
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add 'Copy' "@c"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add 'Cut' "@x"
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add 'Paste' "@v"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Close Tab" "^w"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Find..." "^f"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "New Tab" "^t"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "New Window" "^n"
 defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Open Location..." "^l"
-
