@@ -16,4 +16,5 @@
         url: "{{ git_num_response.json[0].assets[0].browser_download_url }}"
         dest: "{{ git_num_path }}"
         mode: a+rx
+      become: true
   when: not git_num_install.stat.exists
