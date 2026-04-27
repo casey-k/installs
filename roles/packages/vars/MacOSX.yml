@@ -27,10 +27,10 @@ brew_packages:
   - wget
 
 brew_casks:
-  - atom
   - beyond-compare
   - iterm2
   - jetbrains-toolbox
+  - warp
 
 key_equivalents:
   - { name: '-g', command: 'Copy', key: '^c' }
