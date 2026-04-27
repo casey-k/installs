@@ -9,9 +9,9 @@
     # more verbose log that shows changed files
     ll = log --pretty=format:'%C(yellow)%h %C(blue bold)%ad %C(reset)%C(auto)%d %C(reset)%s%C(green) [%cn]' --decorate --date=short --stat
     nfm = merge --no-ff
-    st = num
-    a = num add
-    d = num diff
-    r = num reset
-    co = num checkout
-    sw = num switch
+    st = status
+    a = add
+    d = diff
+    r = reset
+    co = checkout
+    sw = switch
