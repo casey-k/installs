@@ -3,6 +3,7 @@
 ## Ansible Instructions (WIP)
 
 ```bash
+ansible-galaxy install -r requirements.yml
 ansible-playbook setup.yaml -i hosts --ask-become-pass
 ```
 
