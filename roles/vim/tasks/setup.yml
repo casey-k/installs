@@ -3,9 +3,6 @@
 
 - name: Get Vim version.
   shell: "set -o pipefail && vim --version | head -n1 | awk '{ print $5 }'"
-  args:
-    executable: "/bin/bash"
-    warn: false
   register: vim_version_string
   changed_when: false
 
